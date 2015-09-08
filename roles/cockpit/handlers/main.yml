@@ -1,0 +1,7 @@
+---
+- name: cockpit_startup
+  command: systemctl enable cockpit.socket
+- name: cockpit_start
+  command: systemctl start cockpit
+- name: firewall_reload
+  command: firewall-cmd --reload

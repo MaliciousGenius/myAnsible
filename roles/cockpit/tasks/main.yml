@@ -1,0 +1,12 @@
+---
+- name: Cockpit install
+  yum: name='cockpit'
+       state=latest
+  notify:
+  - cockpit_startup
+  - cockpit_start
+
+- name: Configure firewall
+  command: firewall-cmd --permanent --zone=public --add-service=cockpit
+  notify:
+  - firewall_reload
