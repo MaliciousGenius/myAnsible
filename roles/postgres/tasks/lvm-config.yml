@@ -1,0 +1,8 @@
+- name: Create Physical Volume on /dev/sdb
+  command: pvcreate /dev/sdb
+
+- name: Create volume group on the disks
+  lvg: vg=data_pg-node-0 pvs=/dev/sdb
+
+- name: Create logical volume named metadata
+  lvol: vg=data_pg-node-0 lv=pgdata size=100%FREE

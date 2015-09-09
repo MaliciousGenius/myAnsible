@@ -1,0 +1,28 @@
+2015-09-09 12:45:19,438 p=12015 u=Administrator |   
+2015-09-09 12:45:19,438 p=12015 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/common.yml
+2015-09-09 12:45:19,438 p=12015 u=Administrator |   
+2015-09-09 12:45:19,471 p=12015 u=Administrator |  PLAY [all] ******************************************************************** 
+2015-09-09 12:45:19,471 p=12015 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-09 12:45:21,297 p=12015 u=Administrator |  ok: [192.168.0.251]
+2015-09-09 12:45:21,297 p=12015 u=Administrator |  ok: [192.168.0.250]
+2015-09-09 12:45:21,310 p=12015 u=Administrator |  TASK: [common | Add EPEL repository] ****************************************** 
+2015-09-09 12:45:22,845 p=12015 u=Administrator |  ok: [192.168.0.251]
+2015-09-09 12:45:23,016 p=12015 u=Administrator |  ok: [192.168.0.250]
+2015-09-09 12:45:23,027 p=12015 u=Administrator |  TASK: [common | Add Zabbix repository] **************************************** 
+2015-09-09 12:45:24,126 p=12015 u=Administrator |  ok: [192.168.0.251]
+2015-09-09 12:45:24,128 p=12015 u=Administrator |  ok: [192.168.0.250]
+2015-09-09 12:45:24,137 p=12015 u=Administrator |  TASK: [common | Update system] ************************************************ 
+2015-09-09 12:45:34,122 p=12015 u=Administrator |  ok: [192.168.0.250]
+2015-09-09 12:45:45,923 p=12015 u=Administrator |  ok: [192.168.0.251]
+2015-09-09 12:45:45,933 p=12015 u=Administrator |  TASK: [common | Install mc] *************************************************** 
+2015-09-09 12:46:06,274 p=12015 u=Administrator |  ok: [192.168.0.251]
+2015-09-09 12:46:11,167 p=12015 u=Administrator |  changed: [192.168.0.250]
+2015-09-09 12:46:11,177 p=12015 u=Administrator |  TASK: [common | Install wget] ************************************************* 
+2015-09-09 12:46:28,614 p=12015 u=Administrator |  ok: [192.168.0.251]
+2015-09-09 12:46:38,712 p=12015 u=Administrator |  changed: [192.168.0.250]
+2015-09-09 12:46:38,721 p=12015 u=Administrator |  TASK: [common | Install Git] ************************************************** 
+2015-09-09 12:46:57,103 p=12015 u=Administrator |  ok: [192.168.0.251]
+2015-09-09 12:47:04,018 p=12015 u=Administrator |  changed: [192.168.0.250]
+2015-09-09 12:47:04,027 p=12015 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-09 12:47:04,028 p=12015 u=Administrator |  192.168.0.250              : ok=7    changed=3    unreachable=0    failed=0   
+2015-09-09 12:47:04,028 p=12015 u=Administrator |  192.168.0.251              : ok=7    changed=0    unreachable=0    failed=0   

@@ -1,0 +1,5 @@
+---
+- hosts: pg-nodes
+  user: root
+  roles:
+  - cockpit
