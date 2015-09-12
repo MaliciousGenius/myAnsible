@@ -1,0 +1,6 @@
+---
+- hosts: rootconsole
+  user: root
+  roles:
+  - common
+  - rootconsole

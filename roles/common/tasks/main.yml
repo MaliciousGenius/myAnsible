@@ -1,2 +1,2 @@
 ---
-- include: package_manager.yml
+- include: package_manage.yml

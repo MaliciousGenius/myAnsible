@@ -6,7 +6,7 @@
   - cockpit_startup
   - cockpit_start
 
-- name: Configure firewall
+- name: Firewall configure
   command: firewall-cmd --permanent --zone=public --add-service=cockpit
   notify:
   - firewall_reload

@@ -1,0 +1,5 @@
+---
+- name: Adobe Flash install
+  yum: name='flash-plugin'
+       enablerepo=adobe-linux-x86_64
+       state=latest

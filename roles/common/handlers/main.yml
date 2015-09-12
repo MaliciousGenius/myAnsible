@@ -1,0 +1,9 @@
+---
+- name: epel_repo_disable
+  command: sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/epel.repo
+
+- name: adobe_repo_disable
+  command: sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/adobe-linux-x86_64.repo
+
+- name: zabbix_repo_disable
+  command: sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/zabbix.repo 
