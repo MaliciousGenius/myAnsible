@@ -22,5 +22,3 @@
 
 - name: start in runlevel 5
   command: /bin/systemctl set-default graphical.target
-  
-#sed -i -e "s/id:3:initdefault:/id:5:initdefault:/g" /etc/inittab

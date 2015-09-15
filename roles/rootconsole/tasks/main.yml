@@ -1,3 +1,4 @@
 ---
 - include: gui.yml
 - include: media.yml
+- include: software.yml

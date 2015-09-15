@@ -1,0 +1,5 @@
+---
+- name: Xterm install
+  yum: name='xfce4-terminal'
+       enablerepo=epel
+       state=latest
