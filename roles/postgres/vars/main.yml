@@ -1,2 +1,23 @@
-disk:
+pg_disk:
   - /dev/sdb
+
+util_packages:
+ - perl-core
+ - openjade
+ - opensp
+ - docbook-dtds
+ - docbook-style-dsssl
+ - icu
+ - libicu
+ - libicu-devel
+ - readline-devel
+ - zlib-devel
+ - openssl-devel
+ - pam-devel
+ - python-devel
+ - krb5-devel
+ - libxml2-devel
+ - libxslt-devel
+ - openldap-devel
+ - e2fsprogs-devel
+ - tcl-devel

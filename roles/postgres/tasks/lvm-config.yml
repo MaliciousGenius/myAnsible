@@ -1,8 +1,8 @@
 - name: Create Physical Volume on /dev/sdb
-  command: pvcreate /dev/sdb
+  command: pvcreate {{ pg_disk }}
 
 - name: Create volume group on the disks
-  lvg: vg=data_pg-node-0 pvs=/dev/sdb
+  lvg: vg=pg_storage pvs={{ pg_disk }}
 
 - name: Create logical volume named metadata
-  lvol: vg=data_pg-node-0 lv=pgdata size=100%FREE
+  lvol: vg=pg_storage lv=pg_data size=100%FREE
