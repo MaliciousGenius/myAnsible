@@ -1,20 +1,26 @@
 ---
 - name: X Windows install
-  yum: name='@X Window system'
+  yum: name="@X Window system"
        enablerepo=epel
        state=latest
 
 - name: Fonts install
-  yum: name='@Fonts'
+  yum: name="@Fonts"
        enablerepo=epel
        state=latest
 
 - name: Xfce install
-  yum: name='@Xfce'
+  yum: name="@Xfce"
        enablerepo=epel
        state=latest
   notify:
   - xfce_startup
 
-- name: inittab edit
-  command: sed -i -e "s/id:3:initdefault:/id:5:initdefault:/g" /etc/inittab
+- name: gdm install
+  yum: name="gdm"
+       state=latest
+
+- name: start in runlevel 5
+  command: /bin/systemctl set-default graphical.target
+  
+#sed -i -e "s/id:3:initdefault:/id:5:initdefault:/g" /etc/inittab

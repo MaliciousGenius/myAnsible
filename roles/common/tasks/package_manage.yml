@@ -24,14 +24,7 @@
        state=latest
 
 ### Packages install
-- name: mc install
-  yum: name='mc'
+- name: default packages install
+  yum: name={{ item }}
        state=latest
-
-- name: wget install
-  yum: name='wget'
-       state=latest
-
-- name: Git install
-  yum: name='git'
-       state=latest
+  with_items: packages
