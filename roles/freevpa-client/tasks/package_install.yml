@@ -1,0 +1,7 @@
+---
+- name: ipa-server packages install
+  yum: name={{ item }} state=present
+  with_items:
+   - ipa-server
+   - bind
+   - bind-dyndb-ldap

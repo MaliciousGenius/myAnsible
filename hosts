@@ -1,0 +1,4 @@
+mothership ansible_ssh_port=22 ansible_ssh_host=172.16.0.23
+
+[hypervisor]
+hv-node-[1:5].example.com
