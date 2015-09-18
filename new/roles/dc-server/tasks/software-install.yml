@@ -1,0 +1,5 @@
+---
+- name: ipa-server packages install
+  yum: name={{ item }}
+       state=latest
+  with_items: software

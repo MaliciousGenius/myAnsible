@@ -1,0 +1,6 @@
+---
+- name: Hostname change
+  command: hostnamectl set-hostname {{ inventory_hostname_short }}
+
+- include: repository-manage.yml
+- include: software-install.yml

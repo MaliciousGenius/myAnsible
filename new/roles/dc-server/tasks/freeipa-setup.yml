@@ -1,0 +1,3 @@
+---
+- name: FreeIPA setup
+  command: ipa-server-install -a {{ password }} --hostname={{ hostname }} -r {{ kerberos_realm_name }} -p {{ directory_manager_password }} -n {{ domain_search }} -U --setup-dns --forwarder={{ dns_forwarder_ip }}

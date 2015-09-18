@@ -1,0 +1,19 @@
+---
+- name: Firewall configure
+  command: firewall-cmd --permanent --zone=public --add-service=cockpit
+  notify:
+  - firewall_reload
+  
+  firewall-cmd --permanent --add-service=ntp
+  
+  firewall-cmd --permanent --add-service=http
+  
+  firewall-cmd --permanent --add-service=https
+  
+  firewall-cmd --permanent --add-service=ldap
+  
+  firewall-cmd --permanent --add-service=ldaps
+  
+  firewall-cmd --permanent --add-service=kerberos
+  
+  firewall-cmd --permanent --add-service=kpasswd

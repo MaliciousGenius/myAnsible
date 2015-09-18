@@ -1,0 +1,40 @@
+---
+- name: ldap service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=ldap
+  notify:
+    - firewall_reload
+
+- name: ldaps service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=ldaps
+  notify:
+    - firewall_reload
+
+- name: kerberos service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=kerberos
+  notify:
+    - firewall_reload
+
+- name: kpasswd service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=kpasswd
+  notify:
+    - firewall_reload
+
+- name: http service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=http
+  notify:
+    - firewall_reload
+
+- name: https service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=https
+  notify:
+    - firewall_reload
+
+- name: ntp service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=ntp
+  notify:
+    - firewall_reload
+
+- name: dns service to firewall add
+  command: firewall-cmd --permanent --zone=public --add-service=dns
+  notify:
+    - firewall_reload

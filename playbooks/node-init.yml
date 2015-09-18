@@ -1,0 +1,6 @@
+---
+- hosts: all
+  user: root
+  tasks:
+    - name: Hostname change
+      command: hostnamectl set-hostname {{ ansible_hostname }}

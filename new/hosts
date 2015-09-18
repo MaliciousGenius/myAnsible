@@ -1,0 +1,21 @@
+[servers:children]
+dc-servers
+db-servers
+
+[dc-servers]
+dc-node-1 ansible_ssh_host=192.168.0.250
+dc-node-2 ansible_ssh_host=192.168.0.251
+
+[db-servers]
+db-node-1 ansible_ssh_host=192.168.0.252
+
+
+[workstation:children]
+local-pc
+remote-pc
+
+[local-pc]
+local-pc-0 ansible_ssh_host=192.168.0.248
+
+[remote-pc]
+remote-pc-0 ansible_ssh_host=192.168.0.249

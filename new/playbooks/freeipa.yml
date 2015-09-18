@@ -1,0 +1,10 @@
+---
+- hosts: dc-servers
+  user: root
+  roles:
+    - dc-server
+
+#- hosts: db-servers workstation
+#  user: root
+#  roles:
+#    - dc-client

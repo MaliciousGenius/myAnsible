@@ -1,0 +1,7 @@
+---
+software:
+  - ipa-server
+  - bind
+  - bind-dyndb-ldap
+
+password: secret

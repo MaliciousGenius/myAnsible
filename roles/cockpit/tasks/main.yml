@@ -1,6 +1,7 @@
 ---
 - name: Cockpit install
   yum: name='cockpit'
+       enablerepo=epel
        state=latest
   notify:
   - cockpit_startup

@@ -1,0 +1,4 @@
+---
+- include: software-install.yml
+- include: freeipa-setup.yml
+- include: firewall-config.yml
