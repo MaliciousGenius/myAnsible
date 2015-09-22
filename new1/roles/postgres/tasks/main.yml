@@ -1,0 +1,49 @@
+---
+- name: Development Tools install
+  yum: name="@Development Tools"
+       state=latest
+
+- name: default packages install
+  yum: name={{ item }}
+       state=latest
+  with_items: packages
+
+- name: 1C Postgres Sourse install
+  command: rpm -i http://v8.1c.ru/overview/postgresql_patches/9-4-2/postgresql94-9.4.2-1.1c.src.rpm
+
+- name: apply patch to one file
+  patch: src=macros.patch
+         dest=/usr/lib/rpm/macros
+
+- name: create link libicuuc.so
+  file: src=/usr/lib64/libicuuc.so dest=/usr/local/lib64/libicuuc.so.46 state=link
+
+- name: create link libicudata.so
+  file: src=/usr/lib64/libicudata.so dest=/usr/local/lib64/libicudata.so.46 state=link
+
+- name: create link libicui18n.so
+  file: src=/usr/lib64/libicui18n.so dest=/usr/local/lib64/libicui18n.so.46 state=link
+
+- name: create link libicuuc.so
+  file: src=/usr/lib64/libicuuc.so dest=/usr/local/lib/libicuuc.so.46 state=link
+
+- name: create link libicudata.so
+  file: src=/usr/lib64/libicudata.so dest=/usr/local/lib/libicudata.so.46 state=link
+
+- name: create link libicui18n.so
+  file: src=/usr/lib64/libicui18n.so dest=/usr/local/lib/libicui18n.so.46 state=link
+
+- name: build
+  command: rpmbuild -bb --define='runselftest 0' ~/rpmbuild/SPECS/postgresql-9.4.2.spec
+
+#- name: install
+#  yum: name=/root/ state=present
+
+#- name: install
+#  command: yum -y localinstall ~/rpmbuild/RPMS/x86_64/postgresql94-*.rpm
+
+#- name: ch
+#  command: chown postgres:postgres /storages/pg_data/
+
+
+

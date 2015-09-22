@@ -1,0 +1,11 @@
+--- macros	2014-10-29 12:19:38.587900692 +0300
++++ macros.m	2014-10-29 12:20:19.709903976 +0300
+@@ -354,7 +354,7 @@
+ #%vendor
+ 
+ #	Default fuzz level for %patch in spec file.
+-%_default_patch_fuzz	0
++%_default_patch_fuzz	2
+ 
+ #	Default patch flags
+ #%_default_patch_flags	-s

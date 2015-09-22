@@ -1,0 +1,517 @@
+2015-09-22 10:16:42,800 p=15132 u=Administrator |   
+2015-09-22 10:16:42,800 p=15132 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/common.yml
+2015-09-22 10:16:42,800 p=15132 u=Administrator |   
+2015-09-22 10:16:42,863 p=15132 u=Administrator |  PLAY [all] ******************************************************************** 
+2015-09-22 10:16:42,863 p=15132 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 10:16:52,918 p=15132 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 10:16:52,918 p=15132 u=Administrator |  fatal: [root-console-1.dl.local] => SSH Error: ssh: connect to host 192.168.0.248 port 22: Connection timed out
+    while connecting to 192.168.0.248:22
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.
+2015-09-22 10:16:55,938 p=15132 u=Administrator |  fatal: [zabbix-node-1.dl.local] => SSH Error: ssh: connect to host 192.168.0.251 port 22: No route to host
+    while connecting to 192.168.0.251:22
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.
+2015-09-22 10:16:55,949 p=15132 u=Administrator |  TASK: [common | Hostname change] ********************************************** 
+2015-09-22 10:16:56,392 p=15132 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:16:56,393 p=15132 u=Administrator |  TASK: [common | EPEL repository add] ****************************************** 
+2015-09-22 10:27:59,218 p=15132 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:27:59,219 p=15132 u=Administrator |  TASK: [common | Adobe repository] ********************************************* 
+2015-09-22 10:28:00,910 p=15132 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:28:00,910 p=15132 u=Administrator |  TASK: [common | Zabbix repository add] **************************************** 
+2015-09-22 10:28:02,277 p=15132 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:28:02,277 p=15132 u=Administrator |  TASK: [common | software install] ********************************************* 
+2015-09-22 10:29:06,835 p=15132 u=Administrator |  changed: [db-node-1.dl.local] => (item=wget,git,mc)
+2015-09-22 10:29:06,835 p=15132 u=Administrator |  NOTIFIED: [common | epel_repo_disable] **************************************** 
+2015-09-22 10:29:07,210 p=15132 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:29:07,210 p=15132 u=Administrator |  NOTIFIED: [common | adobe_repo_disable] *************************************** 
+2015-09-22 10:29:07,580 p=15132 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:29:07,580 p=15132 u=Administrator |  NOTIFIED: [common | zabbix_repo_disable] ************************************** 
+2015-09-22 10:29:07,943 p=15132 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:29:07,944 p=15132 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 10:29:07,944 p=15132 u=Administrator |             to retry, use: --limit @/root/common.retry
+
+2015-09-22 10:29:07,944 p=15132 u=Administrator |  db-node-1.dl.local         : ok=9    changed=8    unreachable=0    failed=0   
+2015-09-22 10:29:07,944 p=15132 u=Administrator |  root-console-1.dl.local    : ok=0    changed=0    unreachable=1    failed=0   
+2015-09-22 10:29:07,944 p=15132 u=Administrator |  zabbix-node-1.dl.local     : ok=0    changed=0    unreachable=1    failed=0   
+2015-09-22 10:33:58,843 p=15769 u=Administrator |   
+2015-09-22 10:33:58,843 p=15769 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/storage-init.yml
+2015-09-22 10:33:58,843 p=15769 u=Administrator |   
+2015-09-22 10:33:58,875 p=15769 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 10:33:58,875 p=15769 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 10:34:00,779 p=15769 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 10:34:00,780 p=15769 u=Administrator |  TASK: [Create Physical Volume on BlockDevice] ********************************* 
+2015-09-22 10:34:01,191 p=15769 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:34:01,192 p=15769 u=Administrator |  TASK: [Create volume group on the disks] ************************************** 
+2015-09-22 10:34:01,642 p=15769 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:34:01,643 p=15769 u=Administrator |  TASK: [Create logical volume named metadata] ********************************** 
+2015-09-22 10:34:02,097 p=15769 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:34:02,098 p=15769 u=Administrator |  TASK: [Creating new filesystem] *********************************************** 
+2015-09-22 10:34:03,192 p=15769 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:34:03,192 p=15769 u=Administrator |  TASK: [Mount filesystem] ****************************************************** 
+2015-09-22 10:34:03,598 p=15769 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 10:34:03,599 p=15769 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 10:34:03,599 p=15769 u=Administrator |  db-node-1.dl.local         : ok=6    changed=5    unreachable=0    failed=0   
+2015-09-22 11:37:39,967 p=17404 u=Administrator |   
+2015-09-22 11:37:39,967 p=17404 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 11:37:39,968 p=17404 u=Administrator |   
+2015-09-22 11:37:40,003 p=17404 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 11:37:40,004 p=17404 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 11:37:42,079 p=17404 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 11:37:42,080 p=17404 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 11:40:51,551 p=17404 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:40:51,551 p=17404 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 11:42:32,311 p=17404 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 11:42:32,311 p=17404 u=Administrator |  TASK: [postgres | util packages install] ************************************** 
+2015-09-22 11:42:32,764 p=17404 u=Administrator |  failed: [db-node-1.dl.local] => {"failed": true}
+2015-09-22 11:42:32,765 p=17404 u=Administrator |  msg: this module requires key=value arguments (['name=[perl-core,', 'openjade,', 'opensp,', 'docbook-dtds,', 'docbook-style-dsssl,', 'icu,', 'libicu,', 'libicu-devel,', 'readline-devel,', 'zlib-devel,', 'openssl-devel,', 'pam-devel,', 'python-devel,', 'krb5-devel,', 'libxml2-devel,', 'libxslt-devel,', 'openldap-devel,', 'e2fsprogs-devel,', 'tcl-devel]', 'state=latest'])
+2015-09-22 11:42:32,765 p=17404 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 11:42:32,765 p=17404 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 11:42:32,765 p=17404 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 11:42:32,766 p=17404 u=Administrator |  db-node-1.dl.local         : ok=3    changed=1    unreachable=0    failed=1   
+2015-09-22 11:47:13,115 p=17717 u=Administrator |   
+2015-09-22 11:47:13,115 p=17717 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 11:47:13,115 p=17717 u=Administrator |   
+2015-09-22 11:47:13,151 p=17717 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 11:47:13,152 p=17717 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 11:47:15,091 p=17717 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 11:47:15,091 p=17717 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 11:47:15,986 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:47:15,987 p=17717 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 11:49:11,957 p=17717 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 11:49:11,958 p=17717 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 11:50:42,999 p=17717 u=Administrator |  changed: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 11:50:42,999 p=17717 u=Administrator |  TASK: [postgres | patch] ****************************************************** 
+2015-09-22 11:50:43,389 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:50:43,389 p=17717 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 11:50:43,759 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:50:43,760 p=17717 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 11:50:44,130 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:50:44,131 p=17717 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 11:50:44,501 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:50:44,502 p=17717 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 11:50:44,872 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:50:44,873 p=17717 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 11:50:45,241 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:50:45,241 p=17717 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 11:50:45,602 p=17717 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 11:50:45,603 p=17717 u=Administrator |  TASK: [postgres | build] ****************************************************** 
+2015-09-22 11:50:46,009 p=17717 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["rpmbuild", "-bb", "--define=runselftest 0", "~/rpmbuild/SPECS/postgresql-9.4.2.spec"], "delta": "0:00:00.050391", "end": "2015-09-22 11:50:46.000137", "rc": 1, "start": "2015-09-22 11:50:45.949746", "warnings": []}
+2015-09-22 11:50:46,009 p=17717 u=Administrator |  stderr: error: failed to stat /root/rpmbuild/SPECS/postgresql-9.4.2.spec: No such file or directory
+2015-09-22 11:50:46,009 p=17717 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 11:50:46,009 p=17717 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 11:50:46,010 p=17717 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 11:50:46,010 p=17717 u=Administrator |  db-node-1.dl.local         : ok=11   changed=9    unreachable=0    failed=1   
+2015-09-22 12:03:21,623 p=18396 u=Administrator |   
+2015-09-22 12:03:21,623 p=18396 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 12:03:21,623 p=18396 u=Administrator |   
+2015-09-22 12:03:21,659 p=18396 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 12:03:21,660 p=18396 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 12:03:24,634 p=18396 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:03:24,635 p=18396 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 12:03:25,677 p=18396 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:03:25,678 p=18396 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 12:04:48,885 p=18396 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:04:48,886 p=18396 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 12:05:21,733 p=18396 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 12:05:21,734 p=18396 u=Administrator |  TASK: [postgres | patch] ****************************************************** 
+2015-09-22 12:05:22,105 p=18396 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:05:22,106 p=18396 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 12:05:22,479 p=18396 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:05:22,480 p=18396 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 12:05:22,853 p=18396 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:05:22,853 p=18396 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 12:05:23,217 p=18396 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:05:23,217 p=18396 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 12:05:23,588 p=18396 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:05:23,588 p=18396 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 12:05:23,950 p=18396 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:05:23,950 p=18396 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 12:05:24,308 p=18396 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:05:24,308 p=18396 u=Administrator |  TASK: [postgres | build] ****************************************************** 
+2015-09-22 12:05:30,126 p=18396 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["rpmbuild", "-bb", "--define=runselftest 0", "~/rpmbuild/SPECS/postgresql-9.4.2.spec"], "delta": "0:00:05.467204", "end": "2015-09-22 12:05:30.117263", "rc": 1, "start": "2015-09-22 12:05:24.650059", "warnings": []}
+2015-09-22 12:05:30,126 p=18396 u=Administrator |  stderr: + umask 022
++ cd /root/rpmbuild/BUILD
++ cd /root/rpmbuild/BUILD
++ rm -rf postgresql-9.4.2
++ /usr/bin/bzip2 -dc /root/rpmbuild/SOURCES/postgresql-9.4.2.tar.bz2
++ /usr/bin/tar -xf -
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd postgresql-9.4.2
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w .
++ echo 'Patch #1 (rpm-pgsql.patch):'
++ /usr/bin/cat /root/rpmbuild/SOURCES/rpm-pgsql.patch
++ /usr/bin/patch -p1 --fuzz=0
+error: Bad exit status from /var/tmp/rpm-tmp.w83wyt (%prep)
+    Bad exit status from /var/tmp/rpm-tmp.w83wyt (%prep)
+2015-09-22 12:05:30,126 p=18396 u=Administrator |  stdout: Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.w83wyt
+Patch #1 (rpm-pgsql.patch):
+patching file src/Makefile.global.in
+Hunk #1 succeeded at 66 (offset 13 lines).
+Hunk #2 succeeded at 87 (offset 14 lines).
+Hunk #3 succeeded at 103 (offset 14 lines).
+Hunk #4 succeeded at 112 (offset 14 lines).
+Hunk #5 FAILED at 109.
+1 out of 5 hunks FAILED -- saving rejects to file src/Makefile.global.in.rej
+
+
+RPM build errors:
+2015-09-22 12:05:30,126 p=18396 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 12:05:30,127 p=18396 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 12:05:30,127 p=18396 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 12:05:30,127 p=18396 u=Administrator |  db-node-1.dl.local         : ok=11   changed=3    unreachable=0    failed=1   
+2015-09-22 12:07:04,714 p=18512 u=Administrator |   
+2015-09-22 12:07:04,715 p=18512 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 12:07:04,715 p=18512 u=Administrator |   
+2015-09-22 12:07:04,750 p=18512 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 12:07:04,750 p=18512 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 12:07:07,600 p=18512 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:07:07,601 p=18512 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 12:07:08,645 p=18512 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:07:08,645 p=18512 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 12:08:31,764 p=18512 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:08:31,764 p=18512 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 12:09:03,517 p=18512 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 12:09:03,517 p=18512 u=Administrator |  TASK: [postgres | patch] ****************************************************** 
+2015-09-22 12:09:03,880 p=18512 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:09:03,880 p=18512 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 12:09:04,241 p=18512 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:09:04,242 p=18512 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 12:09:04,602 p=18512 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:09:04,602 p=18512 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 12:09:04,962 p=18512 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:09:04,962 p=18512 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 12:09:05,328 p=18512 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:09:05,329 p=18512 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 12:09:05,684 p=18512 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:09:05,685 p=18512 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 12:09:06,045 p=18512 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:09:06,045 p=18512 u=Administrator |  TASK: [postgres | build] ****************************************************** 
+2015-09-22 12:09:11,562 p=18512 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["rpmbuild", "-bb", "--define=runselftest 0", "~/rpmbuild/SPECS/postgresql-9.4.2.spec"], "delta": "0:00:05.165470", "end": "2015-09-22 12:09:11.553933", "rc": 1, "start": "2015-09-22 12:09:06.388463", "warnings": []}
+2015-09-22 12:09:11,563 p=18512 u=Administrator |  stderr: + umask 022
++ cd /root/rpmbuild/BUILD
++ cd /root/rpmbuild/BUILD
++ rm -rf postgresql-9.4.2
++ /usr/bin/bzip2 -dc /root/rpmbuild/SOURCES/postgresql-9.4.2.tar.bz2
++ /usr/bin/tar -xf -
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd postgresql-9.4.2
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w .
++ echo 'Patch #1 (rpm-pgsql.patch):'
++ /usr/bin/cat /root/rpmbuild/SOURCES/rpm-pgsql.patch
++ /usr/bin/patch -p1 --fuzz=0
+error: Bad exit status from /var/tmp/rpm-tmp.CDUuz3 (%prep)
+    Bad exit status from /var/tmp/rpm-tmp.CDUuz3 (%prep)
+2015-09-22 12:09:11,563 p=18512 u=Administrator |  stdout: Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.CDUuz3
+Patch #1 (rpm-pgsql.patch):
+patching file src/Makefile.global.in
+Hunk #1 succeeded at 66 (offset 13 lines).
+Hunk #2 succeeded at 87 (offset 14 lines).
+Hunk #3 succeeded at 103 (offset 14 lines).
+Hunk #4 succeeded at 112 (offset 14 lines).
+Hunk #5 FAILED at 109.
+1 out of 5 hunks FAILED -- saving rejects to file src/Makefile.global.in.rej
+
+
+RPM build errors:
+2015-09-22 12:09:11,563 p=18512 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 12:09:11,563 p=18512 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 12:09:11,564 p=18512 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 12:09:11,564 p=18512 u=Administrator |  db-node-1.dl.local         : ok=11   changed=3    unreachable=0    failed=1   
+2015-09-22 12:12:17,008 p=18716 u=Administrator |   
+2015-09-22 12:12:17,008 p=18716 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 12:12:17,008 p=18716 u=Administrator |   
+2015-09-22 12:12:17,045 p=18716 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 12:12:17,045 p=18716 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 12:12:19,096 p=18716 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:12:19,097 p=18716 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 12:12:19,993 p=18716 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:12:19,993 p=18716 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 12:13:35,210 p=18716 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:13:35,210 p=18716 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 12:14:06,970 p=18716 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 12:14:06,970 p=18716 u=Administrator |  TASK: [postgres | patch] ****************************************************** 
+2015-09-22 12:14:07,337 p=18716 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:14:07,338 p=18716 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 12:14:07,695 p=18716 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:14:07,695 p=18716 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 12:14:08,062 p=18716 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:14:08,063 p=18716 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 12:14:08,418 p=18716 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:14:08,419 p=18716 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 12:14:08,780 p=18716 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:14:08,781 p=18716 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 12:14:09,137 p=18716 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:14:09,137 p=18716 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 12:14:09,495 p=18716 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:14:09,496 p=18716 u=Administrator |  TASK: [postgres | build] ****************************************************** 
+2015-09-22 12:14:14,990 p=18716 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["rpmbuild", "-bb", "--define=runselftest 0", "~/rpmbuild/SPECS/postgresql-9.4.2.spec"], "delta": "0:00:05.144042", "end": "2015-09-22 12:14:14.981513", "rc": 1, "start": "2015-09-22 12:14:09.837471", "warnings": []}
+2015-09-22 12:14:14,991 p=18716 u=Administrator |  stderr: + umask 022
++ cd /root/rpmbuild/BUILD
++ cd /root/rpmbuild/BUILD
++ rm -rf postgresql-9.4.2
++ /usr/bin/bzip2 -dc /root/rpmbuild/SOURCES/postgresql-9.4.2.tar.bz2
++ /usr/bin/tar -xf -
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd postgresql-9.4.2
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w .
++ echo 'Patch #1 (rpm-pgsql.patch):'
++ /usr/bin/cat /root/rpmbuild/SOURCES/rpm-pgsql.patch
++ /usr/bin/patch -p1 --fuzz=0
+error: Bad exit status from /var/tmp/rpm-tmp.IrpdN9 (%prep)
+    Bad exit status from /var/tmp/rpm-tmp.IrpdN9 (%prep)
+2015-09-22 12:14:14,991 p=18716 u=Administrator |  stdout: Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.IrpdN9
+Patch #1 (rpm-pgsql.patch):
+patching file src/Makefile.global.in
+Hunk #1 succeeded at 66 (offset 13 lines).
+Hunk #2 succeeded at 87 (offset 14 lines).
+Hunk #3 succeeded at 103 (offset 14 lines).
+Hunk #4 succeeded at 112 (offset 14 lines).
+Hunk #5 FAILED at 109.
+1 out of 5 hunks FAILED -- saving rejects to file src/Makefile.global.in.rej
+
+
+RPM build errors:
+2015-09-22 12:14:14,991 p=18716 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 12:14:14,991 p=18716 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 12:14:14,991 p=18716 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 12:14:14,992 p=18716 u=Administrator |  db-node-1.dl.local         : ok=11   changed=3    unreachable=0    failed=1   
+2015-09-22 12:51:52,100 p=19681 u=Administrator |   
+2015-09-22 12:51:52,100 p=19681 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 12:51:52,100 p=19681 u=Administrator |   
+2015-09-22 12:51:52,136 p=19681 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 12:51:52,136 p=19681 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 12:51:54,192 p=19681 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 12:51:54,193 p=19681 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 12:51:55,118 p=19681 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:51:55,119 p=19681 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 12:54:02,603 p=19681 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:54:02,603 p=19681 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 12:54:41,511 p=19681 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 12:54:41,511 p=19681 u=Administrator |  TASK: [postgres | Upload patch] *********************************************** 
+2015-09-22 12:54:42,183 p=19681 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 12:54:42,183 p=19681 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 12:54:42,543 p=19681 u=Administrator |  failed: [db-node-1.dl.local] => {"failed": true}
+2015-09-22 12:54:42,544 p=19681 u=Administrator |  msg: src ~/macros.patch doesn't exist or not readable
+2015-09-22 12:54:42,544 p=19681 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 12:54:42,544 p=19681 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 12:54:42,545 p=19681 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 12:54:42,545 p=19681 u=Administrator |  db-node-1.dl.local         : ok=5    changed=3    unreachable=0    failed=1   
+2015-09-22 13:08:51,364 p=20143 u=Administrator |   
+2015-09-22 13:08:51,364 p=20143 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 13:08:51,364 p=20143 u=Administrator |   
+2015-09-22 13:08:51,401 p=20143 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 13:08:51,401 p=20143 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 13:08:53,389 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:08:53,389 p=20143 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 13:08:54,299 p=20143 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:08:54,299 p=20143 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 13:12:47,988 p=20143 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:12:47,989 p=20143 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 13:13:20,064 p=20143 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 13:13:20,064 p=20143 u=Administrator |  TASK: [postgres | Upload patch] *********************************************** 
+2015-09-22 13:13:20,674 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:13:20,675 p=20143 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 13:13:21,038 p=20143 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:13:21,039 p=20143 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 13:13:21,411 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:13:21,412 p=20143 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 13:13:21,726 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:13:21,726 p=20143 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 13:13:22,084 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:13:22,085 p=20143 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 13:13:22,461 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:13:22,461 p=20143 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 13:13:22,826 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:13:22,826 p=20143 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 13:13:23,158 p=20143 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:13:23,159 p=20143 u=Administrator |  TASK: [postgres | build] ****************************************************** 
+2015-09-22 13:17:25,489 p=20143 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:17:25,489 p=20143 u=Administrator |  TASK: [postgres | install] **************************************************** 
+2015-09-22 13:17:26,023 p=20143 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": false, "failed": true, "rc": 0, "results": []}
+2015-09-22 13:17:26,024 p=20143 u=Administrator |  msg: No Package file matching '~/rpmbuild/RPMS/x86_64/postgresql94-*.rpm' found on system
+2015-09-22 13:17:26,024 p=20143 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 13:17:26,024 p=20143 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 13:17:26,024 p=20143 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 13:17:26,025 p=20143 u=Administrator |  db-node-1.dl.local         : ok=13   changed=4    unreachable=0    failed=1   
+2015-09-22 13:20:19,610 p=20571 u=Administrator |   
+2015-09-22 13:20:19,610 p=20571 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 13:20:19,611 p=20571 u=Administrator |   
+2015-09-22 13:20:19,648 p=20571 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 13:20:19,648 p=20571 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 13:20:21,611 p=20571 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:20:21,611 p=20571 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 13:20:22,559 p=20571 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:20:22,559 p=20571 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 13:25:19,150 p=20571 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:25:19,150 p=20571 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 13:25:52,467 p=20571 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 13:25:52,467 p=20571 u=Administrator |  TASK: [postgres | Upload patch] *********************************************** 
+2015-09-22 13:25:53,119 p=20571 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:25:53,120 p=20571 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 13:25:53,490 p=20571 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["patch", "/usr/lib/rpm/macros", "~/macros.patch"], "delta": "0:00:00.005802", "end": "2015-09-22 13:25:53.477175", "rc": 1, "start": "2015-09-22 13:25:53.471373", "warnings": []}
+2015-09-22 13:25:53,490 p=20571 u=Administrator |  stdout: patching file /usr/lib/rpm/macros
+Reversed (or previously applied) patch detected!  Assume -R? [n] 
+Apply anyway? [n] 
+Skipping patch.
+1 out of 1 hunk ignored -- saving rejects to file /usr/lib/rpm/macros.rej
+2015-09-22 13:25:53,491 p=20571 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 13:25:53,491 p=20571 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 13:25:53,491 p=20571 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 13:25:53,491 p=20571 u=Administrator |  db-node-1.dl.local         : ok=5    changed=2    unreachable=0    failed=1   
+2015-09-22 13:31:21,736 p=20836 u=Administrator |   
+2015-09-22 13:31:21,736 p=20836 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 13:31:21,736 p=20836 u=Administrator |   
+2015-09-22 13:31:21,773 p=20836 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 13:31:21,774 p=20836 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 13:31:23,726 p=20836 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:31:23,727 p=20836 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 13:31:24,697 p=20836 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:31:24,697 p=20836 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 13:32:52,986 p=20836 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:32:52,986 p=20836 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 13:33:25,846 p=20836 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 13:33:25,847 p=20836 u=Administrator |  TASK: [postgres | Upload patch] *********************************************** 
+2015-09-22 13:33:26,489 p=20836 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:33:26,489 p=20836 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 13:33:26,859 p=20836 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["patch", "-f", "/usr/lib/rpm/macros", "~/macros.patch"], "delta": "0:00:00.005834", "end": "2015-09-22 13:33:26.844934", "rc": 1, "start": "2015-09-22 13:33:26.839100", "warnings": []}
+2015-09-22 13:33:26,859 p=20836 u=Administrator |  stdout: patching file /usr/lib/rpm/macros
+Hunk #1 FAILED at 354.
+1 out of 1 hunk FAILED -- saving rejects to file /usr/lib/rpm/macros.rej
+2015-09-22 13:33:26,860 p=20836 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 13:33:26,860 p=20836 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 13:33:26,860 p=20836 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 13:33:26,860 p=20836 u=Administrator |  db-node-1.dl.local         : ok=5    changed=2    unreachable=0    failed=1   
+2015-09-22 13:35:18,501 p=20924 u=Administrator |   
+2015-09-22 13:35:18,501 p=20924 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 13:35:18,501 p=20924 u=Administrator |   
+2015-09-22 13:35:18,537 p=20924 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 13:35:18,538 p=20924 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 13:35:20,514 p=20924 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:35:20,514 p=20924 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 13:35:21,416 p=20924 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:35:21,416 p=20924 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 13:37:03,086 p=20924 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:37:03,086 p=20924 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 13:37:36,277 p=20924 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 13:37:36,277 p=20924 u=Administrator |  TASK: [postgres | Upload patch] *********************************************** 
+2015-09-22 13:37:36,947 p=20924 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:37:36,947 p=20924 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 13:37:37,340 p=20924 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["patch", "-f", "/usr/lib/rpm/macros", "~/macros.patch"], "delta": "0:00:00.006493", "end": "2015-09-22 13:37:37.327663", "rc": 1, "start": "2015-09-22 13:37:37.321170", "warnings": []}
+2015-09-22 13:37:37,341 p=20924 u=Administrator |  stdout: patching file /usr/lib/rpm/macros
+Hunk #1 FAILED at 354.
+1 out of 1 hunk FAILED -- saving rejects to file /usr/lib/rpm/macros.rej
+2015-09-22 13:37:37,341 p=20924 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 13:37:37,341 p=20924 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 13:37:37,342 p=20924 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 13:37:37,342 p=20924 u=Administrator |  db-node-1.dl.local         : ok=5    changed=2    unreachable=0    failed=1   
+2015-09-22 13:42:59,945 p=21147 u=Administrator |   
+2015-09-22 13:42:59,945 p=21147 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 13:42:59,945 p=21147 u=Administrator |   
+2015-09-22 13:42:59,981 p=21147 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 13:42:59,982 p=21147 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 13:43:01,976 p=21147 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:43:01,977 p=21147 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 13:43:02,875 p=21147 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:43:02,876 p=21147 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 13:46:41,737 p=21147 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:46:41,737 p=21147 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 13:47:14,098 p=21147 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 13:47:14,099 p=21147 u=Administrator |  TASK: [postgres | Upload patch] *********************************************** 
+2015-09-22 13:47:14,754 p=21147 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:47:14,755 p=21147 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 13:47:14,763 p=21147 u=Administrator |  fatal: [db-node-1.dl.local] => input file not found at /root/ansible-current/roles/postgres/files/~/macros.patch or /root/macros.patch
+2015-09-22 13:47:14,763 p=21147 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 13:47:14,763 p=21147 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 13:47:14,764 p=21147 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 13:47:14,764 p=21147 u=Administrator |  db-node-1.dl.local         : ok=5    changed=2    unreachable=1    failed=0   
+2015-09-22 13:48:38,805 p=21247 u=Administrator |   
+2015-09-22 13:48:38,805 p=21247 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 13:48:38,805 p=21247 u=Administrator |   
+2015-09-22 13:48:38,841 p=21247 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 13:48:38,841 p=21247 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 13:48:40,792 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:48:40,792 p=21247 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 13:48:41,660 p=21247 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:48:41,661 p=21247 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 13:50:10,515 p=21247 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:50:10,515 p=21247 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 13:50:42,554 p=21247 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 13:50:42,554 p=21247 u=Administrator |  TASK: [postgres | Upload patch] *********************************************** 
+2015-09-22 13:50:43,234 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:43,234 p=21247 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 13:50:43,622 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:43,623 p=21247 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 13:50:44,020 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:44,020 p=21247 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 13:50:44,407 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:44,408 p=21247 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 13:50:44,793 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:44,793 p=21247 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 13:50:45,193 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:45,194 p=21247 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 13:50:45,580 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:45,580 p=21247 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 13:50:45,968 p=21247 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 13:50:45,968 p=21247 u=Administrator |  TASK: [postgres | build] ****************************************************** 
+2015-09-22 13:54:34,874 p=21247 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:54:34,875 p=21247 u=Administrator |  TASK: [postgres | install] **************************************************** 
+2015-09-22 13:54:35,428 p=21247 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 13:54:35,428 p=21247 u=Administrator |  TASK: [postgres | ch] ********************************************************* 
+2015-09-22 13:54:35,800 p=21247 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["chown", "postgres:postgres", "/storages/pg_data/"], "delta": "0:00:00.005885", "end": "2015-09-22 13:54:35.787712", "rc": 1, "start": "2015-09-22 13:54:35.781827", "warnings": ["Consider using file module with owner rather than running chown"]}
+2015-09-22 13:54:35,800 p=21247 u=Administrator |  stderr: chown: invalid user: ‘postgres:postgres’
+2015-09-22 13:54:35,800 p=21247 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 13:54:35,800 p=21247 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 13:54:35,801 p=21247 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 13:54:35,801 p=21247 u=Administrator |  db-node-1.dl.local         : ok=14   changed=4    unreachable=0    failed=1   
+2015-09-22 14:52:49,811 p=22950 u=Administrator |   
+2015-09-22 14:52:49,812 p=22950 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/postgres.yml
+2015-09-22 14:52:49,812 p=22950 u=Administrator |   
+2015-09-22 14:52:49,846 p=22950 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-09-22 14:52:49,847 p=22950 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 14:52:51,949 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:52:51,950 p=22950 u=Administrator |  TASK: [postgres | Development Tools install] ********************************** 
+2015-09-22 14:52:52,906 p=22950 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 14:52:52,907 p=22950 u=Administrator |  TASK: [postgres | default packages install] *********************************** 
+2015-09-22 14:53:26,638 p=22950 u=Administrator |  ok: [db-node-1.dl.local] => (item=perl-core,openjade,opensp,docbook-dtds,docbook-style-dsssl,icu,libicu,libicu-devel,readline-devel,zlib-devel,openssl-devel,pam-devel,python-devel,krb5-devel,libxml2-devel,libxslt-devel,openldap-devel,e2fsprogs-devel,tcl-devel)
+2015-09-22 14:53:26,638 p=22950 u=Administrator |  TASK: [postgres | 1C Postgres Sourse install] ********************************* 
+2015-09-22 14:55:23,025 p=22950 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 14:55:23,026 p=22950 u=Administrator |  TASK: [postgres | apply patch to one file] ************************************ 
+2015-09-22 14:55:23,372 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:55:23,373 p=22950 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 14:55:23,727 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:55:23,728 p=22950 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 14:55:24,082 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:55:24,082 p=22950 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 14:55:24,439 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:55:24,439 p=22950 u=Administrator |  TASK: [postgres | create link libicuuc.so] ************************************ 
+2015-09-22 14:55:24,792 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:55:24,792 p=22950 u=Administrator |  TASK: [postgres | create link libicudata.so] ********************************** 
+2015-09-22 14:55:25,150 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:55:25,150 p=22950 u=Administrator |  TASK: [postgres | create link libicui18n.so] ********************************** 
+2015-09-22 14:55:25,501 p=22950 u=Administrator |  ok: [db-node-1.dl.local]
+2015-09-22 14:55:25,501 p=22950 u=Administrator |  TASK: [postgres | build] ****************************************************** 
+2015-09-22 14:59:32,295 p=22950 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 14:59:32,296 p=22950 u=Administrator |  TASK: [postgres | install] **************************************************** 
+2015-09-22 14:59:32,869 p=22950 u=Administrator |  changed: [db-node-1.dl.local]
+2015-09-22 14:59:32,869 p=22950 u=Administrator |  TASK: [postgres | ch] ********************************************************* 
+2015-09-22 14:59:33,261 p=22950 u=Administrator |  failed: [db-node-1.dl.local] => {"changed": true, "cmd": ["chown", "postgres:postgres", "/storages/pg_data/"], "delta": "0:00:00.004690", "end": "2015-09-22 14:59:33.247578", "rc": 1, "start": "2015-09-22 14:59:33.242888", "warnings": ["Consider using file module with owner rather than running chown"]}
+2015-09-22 14:59:33,261 p=22950 u=Administrator |  stderr: chown: invalid user: ‘postgres:postgres’
+2015-09-22 14:59:33,262 p=22950 u=Administrator |  FATAL: all hosts have already failed -- aborting
+2015-09-22 14:59:33,262 p=22950 u=Administrator |  PLAY RECAP ******************************************************************** 
+2015-09-22 14:59:33,262 p=22950 u=Administrator |             to retry, use: --limit @/root/postgres.retry
+
+2015-09-22 14:59:33,263 p=22950 u=Administrator |  db-node-1.dl.local         : ok=13   changed=4    unreachable=0    failed=1   

@@ -1,0 +1,18 @@
+---
+- name: EPEL repository add
+  yum: name='http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm'
+       state=present
+  notify:
+    - epel_repo_disable
+
+- name: Adobe repository
+  yum: name='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
+       state=present
+  notify:
+    - adobe_repo_disable
+
+- name: Zabbix repository add
+  yum: name='http://repo.zabbix.com/zabbix/2.4/rhel/7/x86_64/zabbix-release-2.4-1.el7.noarch.rpm'
+       state=present
+  notify:
+    - zabbix_repo_disable

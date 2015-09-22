@@ -78,3 +78,16 @@ It is sometimes useful to re-run the command using -vvvv, which prints SSH debug
 2015-09-18 08:34:40,440 p=4664 u=Administrator |  192.168.0.250              : ok=1    changed=0    unreachable=0    failed=1   
 2015-09-18 08:34:40,440 p=4664 u=Administrator |  192.168.0.251              : ok=1    changed=0    unreachable=0    failed=1   
 2015-09-18 08:34:40,440 p=4664 u=Administrator |  192.168.0.252              : ok=1    changed=0    unreachable=0    failed=1   
+2015-09-22 08:49:13,710 p=11779 u=Administrator |   
+2015-09-22 08:49:13,710 p=11779 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/cockpit.yml
+2015-09-22 08:49:13,710 p=11779 u=Administrator |   
+2015-09-22 08:49:13,860 p=11779 u=Administrator |  PLAY [all] ******************************************************************** 
+2015-09-22 08:49:13,861 p=11779 u=Administrator |  GATHERING FACTS *************************************************************** 
+2015-09-22 08:49:24,036 p=11779 u=Administrator |  ok: [192.168.0.252]
+2015-09-22 08:49:24,037 p=11779 u=Administrator |  ok: [192.168.0.250]
+2015-09-22 08:49:24,038 p=11779 u=Administrator |  ok: [192.168.0.251]
+2015-09-22 08:49:24,039 p=11779 u=Administrator |  fatal: [172.16.0.173] => SSH Error: ssh: connect to host 172.16.0.173 port 22: Connection timed out
+    while connecting to 172.16.0.173:22
+It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.
+2015-09-22 08:49:24,060 p=11779 u=Administrator |  TASK: [cockpit | Cockpit install] ********************************************* 
+2015-09-22 08:49:36,263 p=11779 u=Administrator |  ERROR: interrupted

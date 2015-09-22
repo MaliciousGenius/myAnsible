@@ -1,3 +1,6 @@
+[hypervisor]
+hv-node-[1:5].dl.local
+
 [servers:children]
 dc-servers
 db-servers
