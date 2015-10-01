@@ -1,5 +1,5 @@
 ---
-software:
+Software:
   - wget
   - git
   - mc

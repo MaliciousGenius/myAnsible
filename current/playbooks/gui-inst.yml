@@ -1,0 +1,43 @@
+---
+- hosts: workstation
+  user: root
+  tasks:
+    - name: GUI | X Windows install
+      yum: name="@X Window system"
+           enablerepo=epel
+           state=present
+
+    - name: GUI | Fonts install
+      yum: name="@Fonts"
+           enablerepo=epel
+           state=present
+
+    - name: GUI | Xfce install
+      yum: name="@Xfce"
+           enablerepo=epel
+           state=present
+      notify:
+        - xfce_startup
+
+    - name: GUI | gdm install
+      yum: name="gdm"
+           state=present
+
+    - name: GUI | startup configure
+      command: systemctl set-default graphical.target
+
+    - name: GUI | Xfce utils install
+      yum: name='xfce4-terminal'
+           enablerepo=epel
+           state=present
+
+    - name: Adobe Flash install
+      yum: name='flash-plugin'
+           enablerepo=adobe-linux-x86_64
+           state=present
+
+# http://www.if-not-true-then-false.com/2012/install-skype-on-fedora-centos-red-hat-rhel-scientific-linux-sl/
+
+  handlers:
+    - name: xfce_startup
+      command: systemctl isolate graphical.target

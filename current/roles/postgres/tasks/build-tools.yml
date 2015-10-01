@@ -1,0 +1,5 @@
+---
+- name: build tools | additional packages install
+  yum: name={{ item }}
+       state=present
+  with_items: AdditionalPackages

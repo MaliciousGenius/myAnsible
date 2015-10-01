@@ -1,0 +1,24 @@
+---
+- hosts: db-servers
+  user: root
+  vars:
+    device: /dev/sdb
+    vgname: database_storage
+    lvname: database
+    fstype: ext4
+    mountpoint: /storages/database
+  tasks:
+    - name: Create Physical Volume on BlockDevice
+      command: pvcreate {{ device }}
+
+    - name: Create volume group on the disks
+      lvg: vg={{ vgname }} pvs={{ device }}
+
+    - name: Create logical volume named metadata
+      lvol: vg={{ vgname }} lv={{ lvname }} size=100%FREE
+
+    - name: Creating new filesystem
+      filesystem: fstype=ext4 dev=/dev/{{ vgname }}/{{ lvname }}
+
+    - name: Mount filesystem
+      mount: name={{ mountpoint }} src=/dev/{{ vgname }}/{{ lvname }} fstype={{ fstype }} state=mounted

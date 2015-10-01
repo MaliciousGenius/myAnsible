@@ -1,0 +1,34 @@
+---
+- hosts: zabbix-node-1.dl.local
+  user: root
+  vars:
+    server: 192.168.0.250
+    database: zabbix
+    user: zabbix
+    password: password
+    database_sqlload: True
+  tasks:
+
+    - name: "PostgreSQL | Importing schema file"
+      shell: "cd /usr/share/doc/zabbix-server-pgsql-2.4.6/create && psql -h '{{ server }}' -U '{{ user }}' -d '{{ database }}' -f schema.sql && touch /etc/zabbix/schema.done"
+      args:
+        creates: /etc/zabbix/schema.done
+      environment:
+        PGPASSWORD: '{{ password }}'
+      when: database_sqlload
+
+    - name: "PostgreSQL | Importing images file"
+      shell: "cd /usr/share/doc/zabbix-server-pgsql-2.4.6/create && psql -h '{{ server }}' -U '{{ user }}' -d '{{ database }}' -f images.sql && touch /etc/zabbix/images.done"
+      args:
+        creates: /etc/zabbix/images.done
+      environment:
+        PGPASSWORD: '{{ password }}'
+      when: database_sqlload
+
+    - name: "PostgreSQL | Importing data file"
+      shell: "cd /usr/share/doc/zabbix-server-pgsql-2.4.6/create && psql -h '{{ server }}' -U '{{ user }}' -d '{{ database }}' -f data.sql && touch /etc/zabbix/data.done"
+      args:
+        creates: /etc/zabbix/data.done
+      environment:
+        PGPASSWORD: '{{ password }}'
+      when: database_sqlload

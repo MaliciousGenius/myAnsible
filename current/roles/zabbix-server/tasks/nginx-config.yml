@@ -1,0 +1,14 @@
+---
+- name: nginx config | remove old default.conf
+  file: path=/etc/nginx/conf.d/default.conf
+        state=absent
+
+- name: nginx config | copy new default.conf
+  copy: src=default.conf
+        dest=/etc/nginx/conf.d/default.conf
+        owner=root
+        group=root
+        mode=0644
+  notify:
+    - nginx_restart
+    - php-fpm_restart

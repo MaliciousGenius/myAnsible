@@ -1,0 +1,34 @@
+StorageDatabase: /storages/database
+
+AdditionalPackages:
+  - perl-core
+  - openjade
+  - opensp
+  - docbook-dtds
+  - docbook-style-dsssl
+  - icu
+  - libicu
+  - libicu-devel
+  - readline-devel
+  - zlib-devel
+  - openssl-devel
+  - pam-devel
+  - python-devel
+  - krb5-devel
+  - libxml2-devel
+  - libxslt-devel
+  - openldap-devel
+  - e2fsprogs-devel
+  - tcl-devel
+
+PostgresPackages:
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-contrib-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-debuginfo-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-devel-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-docs-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-libs-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-plperl-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-plpython-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-server-9.4.2-1.1C.x86_64.rpm
+  - /root/rpmbuild/RPMS/x86_64/postgresql94-test-9.4.2-1.1C.x86_64.rpm

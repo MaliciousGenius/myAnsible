@@ -3,10 +3,10 @@
   user: root
   vars:
     device: /dev/sdb
-    vgname: pg_storage
-    lvname: pg_data
+    vgname: system_storage
+    lvname: system
     fstype: ext4
-    mountpoint: /storages/pg_data
+    mountpoint: /storages/system
   tasks:
     - name: Create Physical Volume on BlockDevice
       command: pvcreate {{ device }}

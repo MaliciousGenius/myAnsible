@@ -1,5 +1,0 @@
----
-- name: software install
-  yum: name={{ item }}
-       state=latest
-  with_items: software

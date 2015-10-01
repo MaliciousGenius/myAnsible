@@ -1,0 +1,28 @@
+---
+- include: repository-manage.yml
+
+- name: additional packages install
+  yum: name={{ item }}
+       enablerepo=nginx
+       state=present
+  with_items: AdditionalPackages
+  notify:
+    - nginx_startup
+    - php-fpm_startup
+
+- name: zabbix packages install
+  yum: name={{ item }}
+       enablerepo=zabbix,epel
+       state=present
+  with_items: ZabbixPackages
+  notify:
+    - zabbix_server_startup
+    - zabbix_agent_startup
+
+- name: firewall configure
+  command: firewall-cmd --permanent --zone=public --add-service=http
+  notify:
+    - firewall_reload
+
+- include: nginx-config.yml
+- include: php-config.yml

@@ -1,0 +1,30 @@
+---
+- hosts: db-node-1.dl.local
+  user: root
+  vars:
+    database: zabbix
+    user: zabbix
+    password: password
+    database_creation: True
+  tasks:
+    - name: python-psycopg2 install
+      yum: name="python-psycopg2"
+           state=present
+
+    - name: "PostgreSQL | Create database user"
+      postgresql_user: name={{ user }}
+                       password={{ password }}
+      sudo: yes
+      sudo_user: postgres
+      when: database_creation
+
+    - name: "PostgreSQL | Create database"
+      postgresql_db: name={{ database }}
+                     owner={{ user }}
+                     encoding='UTF-8'
+                     lc_collate='en_US.UTF-8'
+                     lc_ctype='en_US.UTF-8'
+                     template='template0'
+      sudo: yes
+      sudo_user: postgres
+      when: database_creation

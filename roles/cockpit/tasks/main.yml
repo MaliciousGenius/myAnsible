@@ -2,12 +2,12 @@
 - name: Cockpit install
   yum: name='cockpit'
        enablerepo=epel
-       state=latest
+       state=present
   notify:
   - cockpit_startup
   - cockpit_start
 
-- name: Firewall configure
+- name: firewall configure
   command: firewall-cmd --permanent --zone=public --add-service=cockpit
   notify:
   - firewall_reload

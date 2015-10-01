@@ -1,0 +1,25 @@
+---
+### Common variables
+#domain=dl.local
+
+
+### Storages
+#Storages:
+#  - name: System
+#    mount_point: /storages/system
+#  - name: DataBase
+#    mount_point: /storages/database
+#  - name: Files
+#    mount_point: /storages/files
+
+### PostgreSQL
+#PostgresStorage
+
+#PostgresInstance:
+#  - name: Production
+#    data_directory: "{{ Storages.DataBase.mount_point }}/production"
+#    ORDBMS: postgres
+#  - name: Spare
+#    data_directory: 
+#  - name: Development
+#    data_directory:

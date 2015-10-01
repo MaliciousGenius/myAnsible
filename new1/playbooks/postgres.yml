@@ -1,5 +1,0 @@
----
-- hosts: db-servers
-  user: root
-  roles:
-    - postgres

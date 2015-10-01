@@ -1,0 +1,11 @@
+---
+- hosts: db-servers
+  user: root
+  roles:
+    - postgres
+
+#su - postgres
+#psql -U postgres
+#\password postgres
+#\q
+#exit

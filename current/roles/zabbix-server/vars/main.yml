@@ -1,0 +1,13 @@
+Database: zabbix
+User: zabbix
+Password: password
+
+AdditionalPackages:
+  - nginx
+  - php-fpm
+  - postgresql
+
+ZabbixPackages:
+  - zabbix-server-pgsql
+  - zabbix-web-pgsql
+  - zabbix-agent

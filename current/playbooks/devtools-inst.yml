@@ -1,0 +1,7 @@
+---
+- hosts: db-servers
+  user: root
+  tasks:
+    - name: build tools | Development Tools install
+      yum: name="@Development Tools"
+           state=present
