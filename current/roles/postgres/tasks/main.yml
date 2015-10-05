@@ -16,7 +16,12 @@
          remote_src=False
 
 - name: source 1c-postgres | build
-  command: rpmbuild -bb --define='runselftest 0' /root/rpmbuild/SPECS/postgresql-9.4.2.spec
+  shell: "cd /root && rpmbuild -bb --define='runselftest 0' /root/rpmbuild/SPECS/postgresql-9.4.2.spec && touch /root/pgsql_build.done"
+  args:
+    creates: /root/pgsql_build.done
+
+#- name: source 1c-postgres | build
+#  command: rpmbuild -bb --define='runselftest 0' /root/rpmbuild/SPECS/postgresql-9.4.2.spec
 
 - name: 1c-postgres packages install
   yum: name={{ item }}
