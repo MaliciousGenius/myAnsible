@@ -9,7 +9,11 @@ db-node-1.dl.local ansible_ssh_host=192.168.0.250
 zabbix-node-1.dl.local ansible_ssh_host=192.168.0.251
 
 [workstation:children]
-root-console
+#root-console
+filialis
 
-[root-console]
-root-console-1.dl.local ansible_ssh_host=192.168.0.248
+[filialis]
+template-pc.dl.local ansible_ssh_host=192.168.0.230
+
+#[root-console]
+#root-console-1.dl.local ansible_ssh_host=192.168.0.248

@@ -1,0 +1,28 @@
+---
+- name: Postgres configure | remove old data directory
+  file: path=/var/lib/pgsql/9.4
+        state=absent
+
+- name: Postgres configure | modify new data directory
+  file: path="{{ DataStorage }}"
+        state=directory
+        owner=postgres
+        group=postgres
+        mode=0700
+
+- name: Postgres configure | create link to new data directory
+  file: src="{{ DataStorage }}"
+        dest=/var/lib/pgsql/9.4
+        state=link
+        owner=postgres
+        group=postgres
+
+- name: Postgres configure | initializing database
+  command: service postgresql-9.4 initdb ru_RU.UTF-8
+
+- name: Postgres configure | auth configure
+  copy: src=pg_hba.conf
+        dest=/var/lib/pgsql/9.4/data/pg_hba.conf
+        owner=postgres
+        group=postgres
+        mode=0600

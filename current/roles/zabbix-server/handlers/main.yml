@@ -1,7 +1,4 @@
 ---
-- name: nginx_repo_disable
-  command: sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/nginx.repo
-
 - name: nginx_startup
   command: systemctl enable nginx
 
@@ -9,16 +6,16 @@
   command: systemctl enable php-fpm
 
 - name: zabbix_server_startup
-  command: systemctl enable php-fpm
-
-- name: zabbix_agent_startup
-  command: systemctl enable php-fpm
+  command: systemctl enable zabbix-server
 
 - name: nginx_restart
   command: systemctl restart nginx
 
 - name: php-fpm_restart
   command: systemctl restart php-fpm
+
+- name: zabbix_server_restart
+  command: systemctl restart zabbix-server
 
 - name: firewall_reload
   command: firewall-cmd --reload

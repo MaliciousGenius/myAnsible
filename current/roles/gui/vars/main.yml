@@ -1,0 +1,4 @@
+VNCPackages:
+  - tigervnc-server
+  - xorg-x11-fonts-Type1
+  - xinetd

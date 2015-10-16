@@ -1,67 +1,24 @@
 ---
-- include: build-tools.yml
-- include: links-create.yml
+- name: Additional packages install
+  yum: name={{ item }}
+       state=present
+  with_items: AdditionalPackages
 
-- name: source 1c-postgres | download
-  get_url: url=http://v8.1c.ru/overview/postgresql_patches/9-4-2/postgresql94-9.4.2-1.1c.src.rpm
-           dest=/root/postgresql94-9.4.2-1.1c.src.rpm
-           mode=0440
+- include: build-packages.yml
 
-- name: source 1c-postgres | install
-  command: rpm -i /root/postgresql94-9.4.2-1.1c.src.rpm
-
-- name: source 1c-postgres | patch
-  patch: src=macros.patch
-         dest=/usr/lib/rpm/macros
-         remote_src=False
-
-- name: source 1c-postgres | build
-  shell: "cd /root && rpmbuild -bb --define='runselftest 0' /root/rpmbuild/SPECS/postgresql-9.4.2.spec && touch /root/pgsql_build.done"
-  args:
-    creates: /root/pgsql_build.done
-
-#- name: source 1c-postgres | build
-#  command: rpmbuild -bb --define='runselftest 0' /root/rpmbuild/SPECS/postgresql-9.4.2.spec
-
-- name: 1c-postgres packages install
+- name: Postgres packages install
   yum: name={{ item }}
        state=present
   with_items: PostgresPackages
 
-- name: 1c-postgres config | remove old data directory
-  file: path=/var/lib/pgsql/9.4
-        state=absent
+- include: postgres-config.yml
 
-- name: 1c-postgres config | modify new data directory
-  file: path="{{ StorageDatabase }}"
-        state=directory
-        owner=postgres
-        group=postgres
-        mode=0700
+- name: Firewall configure | port open
+  firewalld: zone=public service=postgresql permanent=true state=enabled
+  notify:
+    - firewall_reload
 
-- name: links create | /var/lib/pgsql/9.4
-  file: src="{{ StorageDatabase }}"
-        dest=/var/lib/pgsql/9.4
-        state=link
-        owner=postgres
-        group=postgres
-
-- name: initializing database
-  command: service postgresql-9.4 initdb ru_RU.UTF-8
-
-- name: config auth
-  copy: src=pg_hba.conf
-        dest=/var/lib/pgsql/9.4/data/pg_hba.conf
-        owner=postgres
-        group=postgres
-        mode=0600
-
-- name: start postgresql service
+- name: Start postgresql service
   service: name=postgresql-9.4
            state=started
            enabled=yes
-
-- name: Firewall configure
-  command: firewall-cmd --permanent --zone=public --add-service=postgresql
-  notify:
-    - firewall_reload

@@ -1,4 +1,4 @@
-StorageDatabase: /storages/database
+DataStorage: /storages/database
 
 AdditionalPackages:
   - perl-core

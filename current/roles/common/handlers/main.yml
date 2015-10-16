@@ -1,9 +1,12 @@
 ---
 - name: epel_repo_disable
-  command: sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/epel.repo
+  lineinfile: dest=/etc/yum.repos.d/epel.repo regexp="^enabled=1" line="enabled=0" state=present
 
 - name: adobe_repo_disable
-  command: sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/adobe-linux-x86_64.repo
+  lineinfile: dest=/etc/yum.repos.d/adobe-linux-x86_64.repo regexp="^enabled=1" line="enabled=0" state=present
 
 - name: zabbix_repo_disable
-  command: sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/zabbix.repo 
+  lineinfile: dest=/etc/yum.repos.d/zabbix.repo regexp="^enabled=1" line="enabled=0" state=present
+
+- name: nginx_repo_disable
+  lineinfile: dest=/etc/yum.repos.d/nginx.repo regexp="^enabled=1" line="enabled=0" state=present

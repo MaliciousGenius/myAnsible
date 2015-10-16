@@ -1,6 +1,7 @@
-Database: zabbix
-User: zabbix
-Password: password
+DBHost: 192.168.0.250
+DBName: zabbix
+DBUser: zabbix
+DBPassword: password
 
 AdditionalPackages:
   - nginx

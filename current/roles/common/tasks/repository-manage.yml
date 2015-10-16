@@ -5,7 +5,7 @@
   notify:
     - epel_repo_disable
 
-- name: Adobe repository
+- name: Adobe repository add
   yum: name='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
        state=present
   notify:
@@ -16,3 +16,9 @@
        state=present
   notify:
     - zabbix_repo_disable
+
+- name: Nginx repository add
+  yum: name='http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm'
+       state=present
+  notify:
+    - nginx_repo_disable

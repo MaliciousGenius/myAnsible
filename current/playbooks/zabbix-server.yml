@@ -1,5 +1,5 @@
 ---
-- hosts: zabbix-node-1.dl.local
+- hosts: zabbix-servers
   user: root
   roles:
     - zabbix-server

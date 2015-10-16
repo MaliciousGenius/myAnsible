@@ -91,3 +91,9 @@ It is sometimes useful to re-run the command using -vvvv, which prints SSH debug
 It is sometimes useful to re-run the command using -vvvv, which prints SSH debug output to help diagnose the issue.
 2015-09-22 08:49:24,060 p=11779 u=Administrator |  TASK: [cockpit | Cockpit install] ********************************************* 
 2015-09-22 08:49:36,263 p=11779 u=Administrator |  ERROR: interrupted
+2015-10-06 16:16:19,370 p=13859 u=Administrator |   
+2015-10-06 16:16:19,389 p=13859 u=Administrator |  /usr/bin/ansible-playbook ./playbooks/cockpit.yml
+2015-10-06 16:16:19,389 p=13859 u=Administrator |   
+2015-10-06 16:16:19,434 p=13859 u=Administrator |  PLAY [db-servers] ************************************************************* 
+2015-10-06 16:16:19,434 p=13859 u=Administrator |  skipping: no hosts matched
+2015-10-06 16:16:19,434 p=13859 u=Administrator |  PLAY RECAP ******************************************************************** 

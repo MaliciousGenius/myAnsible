@@ -1,0 +1,6 @@
+---
+- name: xfce_startup
+  command: systemctl isolate graphical.target
+
+- name: firewall_reload
+  command: firewall-cmd --reload

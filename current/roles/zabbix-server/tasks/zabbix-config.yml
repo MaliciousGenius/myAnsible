@@ -1,0 +1,22 @@
+---
+- name: Zabbix server configure | copy new zabbix.conf.php
+  template: src=zabbix.conf.php
+            dest=/etc/zabbix/web/zabbix.conf.php
+            owner=apache
+            group=apache
+            mode=0644
+  notify:
+    - nginx_restart
+
+- name: Zabbix server configure | remove old zabbix_server.conf
+  file: path=/etc/zabbix/zabbix_server.conf
+        state=absent
+
+- name: Zabbix server configure | copy new zabbix_server.conf
+  template: src=zabbix_server.conf
+            dest=/etc/zabbix/zabbix_server.conf
+            owner=root
+            group=root
+            mode=0644
+  notify:
+    - zabbix_server_restart

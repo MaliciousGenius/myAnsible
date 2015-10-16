@@ -2,8 +2,5 @@
 - name: Hostname change
   command: hostnamectl set-hostname {{ inventory_hostname_short }}
 
-- name: disabled SELinux
-  selinux: state=disabled
-
 - include: repository-manage.yml
 - include: software-install.yml

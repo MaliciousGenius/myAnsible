@@ -1,0 +1,27 @@
+---
+- name: X Windows install
+  yum: name="@X Window system"
+       enablerepo=epel
+       state=present
+
+- name: Fonts install
+  yum: name="@Fonts"
+       enablerepo=epel
+       state=present
+
+- name: Xfce install
+  yum: name="@Xfce"
+       enablerepo=epel
+       state=present
+  notify:
+    - xfce_startup
+
+- name: gdm install
+  yum: name="gdm"
+       state=present
+
+- name: start in runlevel 5
+  command: /bin/systemctl set-default graphical.target
+
+- include: utility-install.yml
+- include: remote-control.yml

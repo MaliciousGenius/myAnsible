@@ -1,0 +1,47 @@
+---
+- name: Build packages | create link to libicuuc.so (x64)
+  file: src=/usr/lib64/libicuuc.so
+        dest=/usr/local/lib64/libicuuc.so.46
+        state=link
+
+- name: Build packages | create link to libicuuc.so (x32)
+  file: src=/usr/lib64/libicuuc.so
+        dest=/usr/local/lib/libicuuc.so.46
+        state=link
+
+- name: Build packages | create link to libicudata.so (x64)
+  file: src=/usr/lib64/libicudata.so
+        dest=/usr/local/lib64/libicudata.so.46
+        state=link
+
+- name: Build packages | create link to libicudata.so (x32)
+  file: src=/usr/lib64/libicudata.so
+        dest=/usr/local/lib/libicudata.so.46
+        state=link
+
+- name: Build packages | create link to libicui18n.so (x64)
+  file: src=/usr/lib64/libicui18n.so
+        dest=/usr/local/lib64/libicui18n.so.46
+        state=link
+
+- name: Build packages | create link to libicui18n.so (x32)
+  file: src=/usr/lib64/libicui18n.so
+        dest=/usr/local/lib/libicui18n.so.46
+        state=link
+
+- name: Build packages | postgres source download
+  get_url: url=http://v8.1c.ru/overview/postgresql_patches/9-4-2/postgresql94-9.4.2-1.1c.src.rpm
+           dest=/root/postgresql94-9.4.2-1.1c.src.rpm
+
+- name: Build packages | postgres source install
+  command: rpm -i /root/postgresql94-9.4.2-1.1c.src.rpm
+
+- name: Build packages | postgres source patch
+  patch: src=macros.patch
+         dest=/usr/lib/rpm/macros
+         remote_src=False
+
+- name: Build packages | postgres source build
+  shell: "cd /root && rpmbuild -bb --define='runselftest 0' /root/rpmbuild/SPECS/postgresql-9.4.2.spec && touch /root/pgsql_build.done"
+  args:
+    creates: /root/pgsql_build.done

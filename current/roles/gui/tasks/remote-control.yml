@@ -1,0 +1,35 @@
+---
+- name: VNC packages install
+  yum: name={{ item }}
+       state=present
+  with_items: VNCPackages
+
+- name: remove old custom.conf
+  file: path=/etc/gdm/custom.conf
+        state=absent
+
+- name: copy new custom.conf
+  copy: src=custom.conf
+        dest=/etc/gdm/custom.conf
+        owner=root
+        group=root
+        mode=0644
+
+- name: copy vncserver
+  copy: src=vncserver
+        dest=/etc/xinetd.d/vncserver
+        owner=root
+        group=root
+        mode=0644
+
+- name: set param in service
+  lineinfile: "dest=/etc/services line='vncserver 5900/tcp # VNC and GDM'"
+
+- name: restart xinetd service
+  service: name=xinetd
+           state=restarted
+
+- name: Firewall configure | vnc port open
+  firewalld: zone=public port="5900/tcp" permanent=true state=enabled
+  notify:
+    - firewall_reload
