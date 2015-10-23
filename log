@@ -1,0 +1,687 @@
+[Administrator@admin-console ~]$ su
+Пароль: 
+ABRT обнаружил 1 сбой (сбоев). Для получения дополнительной информации выполните: abrt-cli list --since 1444896433
+[root@admin-console Administrator]# ls
+my_repo        pgadmin.log  Документы    Музыка         Шаблоны
+openvpn.conf   VM           Загрузки     Общедоступные
+openvpn.conf2  Видео        Изображения  Рабочий стол
+[root@admin-console Administrator]# mc
+
+[root@admin-console handlers]# cat main.yml 
+---
+- name: nginx_startup
+  command: systemctl enable nginx
+
+- name: php-fpm_startup
+  command: systemctl enable php-fpm
+
+- name: zabbix_server_startup
+  command: systemctl enable zabbix-server
+
+- name: nginx_restart
+  command: systemctl restart nginx
+
+- name: php-fpm_restart
+  command: systemctl restart php-fpm
+
+- name: zabbix_server_restart
+  command: systemctl restart zabbix-server
+
+- name: firewall_reload
+  command: firewall-cmd --reload
+[root@admin-console handlers]# ^C
+[root@admin-console handlers]# 
+[root@admin-console playbooks]# cat postgres.yml 
+---
+- hosts: db-servers
+  user: root
+  roles:
+    - postgres
+
+#su - postgres
+#psql -U postgres
+#\password postgres
+#\q
+#exit[root@admin-console playbooks]# ^C
+[root@admin-console playbooks]# 
+[root@admin-console tasks]# OA
+bash: OA: команда не найдена...
+
+[root@admin-console tasks]# cat main.yml 
+---
+- name: zabbix packages install
+  yum: name=zabbix-agent
+       enablerepo=zabbix
+       state=present
+  notify:
+    - zabbix-agent_startup
+
+#- include: php-config.yml
+
+
+#- name: Firewall configure | back-end port open
+#  firewalld: zone=public port={{ item }} permanent=true state=enabled
+#  with_items:
+#    - 10051/tcp
+#    - 10051/udp
+#  notify:
+#    - firewall_reload
+[root@admin-console tasks]# 
+[root@admin-console vars]# cat main.yml 
+ZabbixServerIP: 192.168.0.251
+[root@admin-console vars]# 
+[root@admin-console tasks]# ls
+main.yml  zabbix-agent-config.yml
+[root@admin-console tasks]# 
+[root@admin-console playbooks]# cat gui.yml 
+---
+- hosts: workstation
+  user: root
+  roles:
+    - gui[root@admin-console playbooks]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: zabbix-agent_startup
+  service: name=zabbix-agent
+           state=restarted
+           sleep=3
+           enabled=yes
+
+#- name: firewall_reload
+#  command: firewall-cmd --reload
+[root@admin-console handlers]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: xfce_startup
+  command: systemctl isolate graphical.target
+
+- name: firewall_reload
+  command: firewall-cmd --reload[root@admin-console handlers]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: nginx_startup
+  command: systemctl enable nginx
+
+- name: php-fpm_startup
+  command: systemctl enable php-fpm
+
+- name: zabbix_server_startup
+  command: systemctl enable zabbix-server
+
+- name: nginx_restart
+  command: systemctl restart nginx
+
+- name: php-fpm_restart
+  command: systemctl restart php-fpm
+
+- name: zabbix_server_restart
+  command: systemctl restart zabbix-server
+
+- name: firewall_reload
+  command: firewall-cmd --reload
+[root@admin-console handlers]# 
+[root@admin-console tasks]# cat main.yml 
+---
+- name: Hostname change
+  command: hostnamectl set-hostname {{ inventory_hostname_short }}
+
+- include: repository-manage.yml
+- include: software-install.yml
+[root@admin-console tasks]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: zabbix-agent_startup
+  service: name=zabbix-agent
+           state=restarted
+           sleep=3
+           enabled=yes
+
+- name: firewall_reload
+  command: firewall-cmd --reload
+[root@admin-console handlers]# 
+[root@admin-console tasks]# cat main.yml 
+---
+- name: zabbix packages install
+  yum: name=zabbix-agent
+       enablerepo=zabbix
+       state=present
+  notify:
+    - zabbix-agent sevice config
+
+- include: zabbix-agent-config.yml
+
+- name: Firewall configure | back-end port open
+  firewalld: zone=public port={{ item }} permanent=true state=enabled
+  with_items:
+    - 10050/tcp
+    - 10050/udp
+  notify:
+    - firewall_reload
+[root@admin-console tasks]# 
+[root@admin-console tasks]# cat php-config.yml 
+---
+- name: PHP configure | set timezone in php.ini
+  lineinfile: dest=/etc/php.ini regexp="^;date.timezone*" line="date.timezone = Europe/Moscow" state=present
+  notify:
+    - php-fpm_restart
+
+- name: PHP configure | set post_max_size in php.ini
+  lineinfile: dest=/etc/php.ini regexp="^post_max_size*" line="post_max_size = 16M" state=present
+  notify:
+    - php-fpm_restart
+
+- name: PHP configure | set max_execution_time in php.ini
+  lineinfile: dest=/etc/php.ini regexp="^max_execution_time*" line="max_execution_time = 300" state=present
+  notify:
+    - php-fpm_restart
+
+- name: PHP configure | set max_input_time in php.ini
+  lineinfile: dest=/etc/php.ini regexp="^max_input_time*" line="max_input_time = 300" state=present
+  notify:
+    - php-fpm_restart
+[root@admin-console tasks]# 
+[root@admin-console tasks]# 
+[root@admin-console tasks]# 
+[root@admin-console vars]# cat main.yml 
+ZabbixServerIP: 192.168.0.251
+
+ZAbbixAgentPort:
+  - 10050/tcp
+  - 10050/udp
+[root@admin-console vars]# cat main.yml 
+ZabbixServerIP: 192.168.0.251
+
+ZabbixAgentPort:
+  - 10050/tcp
+  - 10050/udp
+[root@admin-console vars]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: zabbix-agent sevice config
+  service: name=zabbix-agent
+           state=restarted
+           enabled=yes
+
+- name: firewall reload
+  command: firewall-cmd --reload
+[root@admin-console handlers]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: nginx sevice config
+  service: name=nginx
+           state=restarted
+           enabled=yes
+
+- name: php-fpm sevice config
+  service: name=php-fpm
+           state=restarted
+           enabled=yes
+
+- name: php-fpm sevice config
+  service: name=zabbix-server
+           state=restarted
+           enabled=yes
+
+- name: firewall reload
+  service: name=firewalld
+           state=reloaded
+
+#- name: nginx_startup
+#  command: systemctl enable nginx
+#- name: nginx_restart
+#  command: systemctl restart nginx
+
+#- name: php-fpm_startup
+#  command: systemctl enable php-fpm
+#- name: php-fpm_restart
+#  command: systemctl restart php-fpm
+
+#- name: zabbix_server_startup
+#  command: systemctl enable zabbix-server
+#- name: zabbix_server_restart
+#  command: systemctl restart zabbix-server
+
+#- name: firewall_reload
+#  command: firewall-cmd --reload
+[root@admin-console handlers]# 
+[root@admin-console tasks]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: nginx sevice config
+  service: name=nginx
+           state=restarted
+           enabled=yes
+
+- name: php-fpm sevice config
+  service: name=php-fpm
+           state=restarted
+           enabled=yes
+
+- name: zabbix-server sevice config
+  service: name=zabbix-server
+           state=restarted
+           enabled=yes
+
+- name: firewall reload
+  service: name=firewalld
+           state=reloaded
+
+#- name: nginx_startup
+#  command: systemctl enable nginx
+#- name: nginx_restart
+#  command: systemctl restart nginx
+
+#- name: php-fpm_startup
+#  command: systemctl enable php-fpm
+#- name: php-fpm_restart
+#  command: systemctl restart php-fpm
+
+#- name: zabbix_server_startup
+#  command: systemctl enable zabbix-server
+#- name: zabbix_server_restart
+#  command: systemctl restart zabbix-server
+
+#- name: firewall_reload
+#  command: firewall-cmd --reload
+[root@admin-console handlers]# 
+[root@admin-console tasks]# 
+[root@admin-console vars]# cat main.yml 
+ZabbixServerIP: 192.168.0.251
+
+ZabbixAgentPort:
+  - 10050/tcp
+  - 10050/udp
+[root@admin-console vars]# 
+[root@admin-console vars]# cat main.yml 
+DBHost: 192.168.0.250
+DBName: zabbix
+DBUser: zabbix
+DBPassword: password
+
+AdditionalPackages:
+  - nginx
+  - php-fpm
+  - postgresql
+
+ZabbixServerPackages:
+  - zabbix-server-pgsql
+  - zabbix-web-pgsql
+  - zabbix-agent
+
+ZabbixServerPort:
+  - 10051/tcp
+  - 10051/udp[root@admin-console vars]# 
+[root@admin-console tasks]# 
+[root@admin-console ansible]# cat ansible.cfg
+# config file for ansible -- http://ansible.com/
+# ==============================================
+
+# nearly all parameters can be overridden in ansible-playbook 
+# or with command line flags. ansible will read ANSIBLE_CONFIG,
+# ansible.cfg in the current working directory, .ansible.cfg in
+# the home directory or /etc/ansible/ansible.cfg, whichever it
+# finds first
+
+[defaults]
+
+# some basic default values...
+
+inventory      = /etc/ansible/hosts
+#library        = /usr/share/my_modules/
+remote_tmp     = $HOME/.ansible/tmp
+pattern        = *
+forks          = 5
+poll_interval  = 15
+sudo_user      = root
+#ask_sudo_pass = True
+#ask_pass      = True
+transport      = smart
+#remote_port    = 22
+module_lang    = C
+
+# plays will gather facts by default, which contain information about
+# the remote system.
+#
+# smart - gather by default, but don't regather if already gathered
+# implicit - gather by default, turn off with gather_facts: False
+# explicit - do not gather by default, must say gather_facts: True
+gathering = implicit
+
+# additional paths to search for roles in, colon separated
+#roles_path    = /etc/ansible/roles
+
+# uncomment this to disable SSH key host checking
+#host_key_checking = False
+
+# change this for alternative sudo implementations
+sudo_exe = sudo
+
+# what flags to pass to sudo
+#sudo_flags = -H
+
+# SSH timeout
+timeout = 10
+
+# default user to use for playbooks if user is not specified
+# (/usr/bin/ansible will use current user as default)
+#remote_user = root
+
+# logging is off by default unless this path is defined
+# if so defined, consider logrotate
+#log_path = /var/log/ansible.log
+
+# default module name for /usr/bin/ansible
+#module_name = command
+
+# use this shell for commands executed under sudo
+# you may need to change this to bin/bash in rare instances
+# if sudo is constrained
+#executable = /bin/sh
+
+# if inventory variables overlap, does the higher precedence one win
+# or are hash values merged together?  The default is 'replace' but
+# this can also be set to 'merge'.
+#hash_behaviour = replace
+
+# list any Jinja2 extensions to enable here:
+#jinja2_extensions = jinja2.ext.do,jinja2.ext.i18n
+
+# if set, always use this private key file for authentication, same as 
+# if passing --private-key to ansible or ansible-playbook
+#private_key_file = /path/to/file
+
+# format of string {{ ansible_managed }} available within Jinja2 
+# templates indicates to users editing templates files will be replaced.
+# replacing {file}, {host} and {uid} and strftime codes with proper values.
+ansible_managed = Ansible managed: {file} modified on %Y-%m-%d %H:%M:%S by {uid} on {host}
+
+# by default, ansible-playbook will display "Skipping [host]" if it determines a task
+# should not be run on a host.  Set this to "False" if you don't want to see these "Skipping" 
+# messages. NOTE: the task header will still be shown regardless of whether or not the 
+# task is skipped.
+#display_skipped_hosts = True
+
+# by default (as of 1.3), Ansible will raise errors when attempting to dereference 
+# Jinja2 variables that are not set in templates or action lines. Uncomment this line
+# to revert the behavior to pre-1.3.
+#error_on_undefined_vars = False
+
+# by default (as of 1.6), Ansible may display warnings based on the configuration of the
+# system running ansible itself. This may include warnings about 3rd party packages or
+# other conditions that should be resolved if possible.
+# to disable these warnings, set the following value to False:
+#system_warnings = True
+
+# by default (as of 1.4), Ansible may display deprecation warnings for language
+# features that should no longer be used and will be removed in future versions.
+# to disable these warnings, set the following value to False:
+#deprecation_warnings = True
+
+# (as of 1.8), Ansible can optionally warn when usage of the shell and
+# command module appear to be simplified by using a default Ansible module
+# instead.  These warnings can be silenced by adjusting the following
+# setting or adding warn=yes or warn=no to the end of the command line 
+# parameter string.  This will for example suggest using the git module
+# instead of shelling out to the git command.
+# command_warnings = False
+
+
+# set plugin path directories here, separate with colons
+action_plugins     = /usr/share/ansible_plugins/action_plugins
+callback_plugins   = /usr/share/ansible_plugins/callback_plugins
+connection_plugins = /usr/share/ansible_plugins/connection_plugins
+lookup_plugins     = /usr/share/ansible_plugins/lookup_plugins
+vars_plugins       = /usr/share/ansible_plugins/vars_plugins
+filter_plugins     = /usr/share/ansible_plugins/filter_plugins
+
+# by default callbacks are not loaded for /bin/ansible, enable this if you
+# want, for example, a notification or logging callback to also apply to 
+# /bin/ansible runs
+#bin_ansible_callbacks = False
+
+
+# don't like cows?  that's unfortunate.
+# set to 1 if you don't want cowsay support or export ANSIBLE_NOCOWS=1 
+#nocows = 1
+
+# don't like colors either?
+# set to 1 if you don't want colors, or export ANSIBLE_NOCOLOR=1
+#nocolor = 1
+
+# the CA certificate path used for validating SSL certs. This path 
+# should exist on the controlling node, not the target nodes
+# common locations:
+# RHEL/CentOS: /etc/pki/tls/certs/ca-bundle.crt
+# Fedora     : /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+# Ubuntu     : /usr/share/ca-certificates/cacert.org/cacert.org.crt
+#ca_file_path = 
+
+# the http user-agent string to use when fetching urls. Some web server
+# operators block the default urllib user agent as it is frequently used
+# by malicious attacks/scripts, so we set it to something unique to 
+# avoid issues.
+#http_user_agent = ansible-agent
+
+# if set to a persistent type (not 'memory', for example 'redis') fact values
+# from previous runs in Ansible will be stored.  This may be useful when
+# wanting to use, for example, IP information from one group of servers
+# without having to talk to them in the same playbook run to get their
+# current IP information.
+fact_caching = memory
+
+
+# retry files
+#retry_files_enabled = False
+#retry_files_save_path = ~/.ansible-retry
+
+[privilege_escalation]
+#become=True
+#become_method=sudo
+#become_user=root
+#become_ask_pass=False
+
+[paramiko_connection]
+
+# uncomment this line to cause the paramiko connection plugin to not record new host
+# keys encountered.  Increases performance on new host additions.  Setting works independently of the
+# host key checking setting above.
+#record_host_keys=False
+
+# by default, Ansible requests a pseudo-terminal for commands executed under sudo. Uncomment this
+# line to disable this behaviour.
+#pty=False
+
+[ssh_connection]
+
+# ssh arguments to use
+# Leaving off ControlPersist will result in poor performance, so use 
+# paramiko on older platforms rather than removing it
+#ssh_args = -o ControlMaster=auto -o ControlPersist=60s
+
+# The path to use for the ControlPath sockets. This defaults to
+# "%(directory)s/ansible-ssh-%%h-%%p-%%r", however on some systems with
+# very long hostnames or very long path names (caused by long user names or 
+# deeply nested home directories) this can exceed the character limit on
+# file socket names (108 characters for most platforms). In that case, you 
+# may wish to shorten the string below.
+# 
+# Example: 
+# control_path = %(directory)s/%%h-%%r
+#control_path = %(directory)s/ansible-ssh-%%h-%%p-%%r
+
+# Enabling pipelining reduces the number of SSH operations required to 
+# execute a module on the remote server. This can result in a significant 
+# performance improvement when enabled, however when using "sudo:" you must 
+# first disable 'requiretty' in /etc/sudoers
+#
+# By default, this option is disabled to preserve compatibility with
+# sudoers configurations that have requiretty (the default on many distros).
+# 
+#pipelining = False
+
+# if True, make ansible use scp if the connection type is ssh 
+# (default is sftp)
+#scp_if_ssh = True
+
+[accelerate]
+accelerate_port = 5099
+accelerate_timeout = 30
+accelerate_connect_timeout = 5.0
+
+# The daemon timeout is measured in minutes. This time is measured
+# from the last activity to the accelerate daemon.
+accelerate_daemon_timeout = 30 
+
+# If set to yes, accelerate_multi_key will allow multiple
+# private keys to be uploaded to it, though each user must
+# have access to the system via SSH to add a new key. The default
+# is "no".
+#accelerate_multi_key = yes
+
+[selinux]
+# file systems that require special treatment when dealing with security context
+# the default behaviour that copies the existing context or uses the user default
+# needs to be changed to use the file system dependant context.
+#special_context_filesystems=nfs,vboxsf,fuse
+[root@admin-console ansible]# 
+[root@admin-console ansible-current]# 
+[root@admin-console playbooks]# 
+[root@admin-console playbooks]# 
+[root@admin-console playbooks]# 
+[root@admin-console playbooks]# cat postgres.yml 
+---
+- hosts: db-servers
+  user: root
+  roles:
+    - postgres
+
+#su - postgres
+#psql -U postgres
+#\password postgres
+#\q
+#exit[root@admin-console playbooks]# 
+[root@admin-console tasks]# cat repository-manage.yml 
+---
+- name: EPEL repository
+  yum: name='http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm'
+       state=present
+  notify:
+    - epel repo disable
+
+- name: Nux Dextop repository
+  yum: name='http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm'
+       state=present
+  notify:
+    - nux repo disable
+
+- name: Adobe repository
+  yum: name='http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
+       state=present
+  notify:
+    - adobe repo disable
+
+- name: Zabbix repository
+  yum: name='http://repo.zabbix.com/zabbix/2.4/rhel/7/x86_64/zabbix-release-2.4-1.el7.noarch.rpm'
+       state=present
+  notify:
+    - zabbix repo disable
+
+- name: Nginx repository
+  yum: name='http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm'
+       state=present
+  notify:
+    - nginx repo disable
+[root@admin-console tasks]# yum localinstall http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+Загружены модули: fastestmirror, langpacks
+nux-dextop-release-0-5.el7.nux.noarch.rpm                                                                                                                         | 9.7 kB  00:00:00     
+Проверка /var/tmp/yum-root-NKucIg/nux-dextop-release-0-5.el7.nux.noarch.rpm: nux-dextop-release-0-5.el7.nux.noarch
+/var/tmp/yum-root-NKucIg/nux-dextop-release-0-5.el7.nux.noarch.rpm: не обновляет установленный пакет.
+Выполнять нечего
+[root@admin-console tasks]# 
+[root@admin-console yum.repos.d]# ls
+adobe-linux-x86_64.repo  CentOS-CR.repo         CentOS-fasttrack.repo  CentOS-Vault.repo  epel-testing.repo   google.repo
+CentOS-Base.repo         CentOS-Debuginfo.repo  CentOS-Sources.repo    epel.repo          google-chrome.repo  nux-dextop.repo
+[root@admin-console yum.repos.d]# 
+[root@admin-console tasks]# `
+> 
+> \
+> 
+> 
+> 
+> 
+> ^C
+
+[root@admin-console tasks]# ls
+main.yml  packages-install.yml  repository-manage.yml
+[root@admin-console tasks]# 
+fish: ожидается начальная строка...
+
+[root@admin-console vars]# cat main.yml 
+ZabbixServerIP: 192.168.0.251
+
+ZabbixAgentPort:
+  - 10050/tcp
+  - 10050/udp
+[root@admin-console vars]# 
+[root@admin-console tasks]# cat main.yml 
+---
+- name: Hostname change
+  hostname: name={{ inventory_hostname_short }}
+
+- include: repository-manage.yml
+- include: packages-install.yml
+[root@admin-console tasks]# 
+fish: ожидается начальная строка...
+
+[root@admin-console tasks]# cat zabbix-config.yml 
+---
+- name: Zabbix server configure | copy new zabbix.conf.php
+  template: src=zabbix.conf.php
+            dest=/etc/zabbix/web/zabbix.conf.php
+            owner=apache
+            group=apache
+            mode=0644
+  notify:
+    - nginx sevice reconfig
+
+- name: Zabbix server configure | remove old zabbix_server.conf
+  file: path=/etc/zabbix/zabbix_server.conf
+        state=absent
+
+- name: Zabbix server configure | copy new zabbix_server.conf
+  template: src=zabbix_server.conf
+            dest=/etc/zabbix/zabbix_server.conf
+            owner=root
+            group=root
+            mode=0644
+  notify:
+    - zabbix-server sevice reconfig
+[root@admin-console tasks]# 
+[root@admin-console tasks]# 
+[root@admin-console handlers]# cat main.yml 
+---
+- name: nginx sevice reconfig
+  service: name=nginx
+           state=restarted
+           enabled=yes
+
+- name: php-fpm sevice reconfig
+  service: name=php-fpm
+           state=restarted
+           enabled=yes
+
+- name: zabbix-server sevice reconfig
+  service: name=zabbix-server
+           state=restarted
+           enabled=yes
+
+- name: firewall reload
+  service: name=firewalld
+           state=reloaded
+[root@admin-console handlers]# 
+[root@admin-console handlers]# 
+[root@admin-console group_vars]# OA
+bash: OA: команда не найдена...
+
+[root@admin-console ~]# 
+
